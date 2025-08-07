@@ -1,3 +1,4 @@
+
 // src/ai/flows/generate-avatar.ts
 'use server';
 /**
@@ -14,7 +15,7 @@ import {z} from 'genkit';
 const GenerateAvatarInputSchema = z.object({
   interactionHistory: z
     .string()
-    .describe('The user interaction history with Vio 3.'),
+    .describe('The user interaction history with Suku.'),
 });
 export type GenerateAvatarInput = z.infer<typeof GenerateAvatarInputSchema>;
 

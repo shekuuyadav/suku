@@ -1,3 +1,4 @@
+
 'use server';
 /**
  * @fileOverview Models human emotions through generative AI to create believable interactions.
@@ -16,7 +17,7 @@ const ModelHumanEmotionsInputSchema = z.object({
 export type ModelHumanEmotionsInput = z.infer<typeof ModelHumanEmotionsInputSchema>;
 
 const ModelHumanEmotionsOutputSchema = z.object({
-  emotionalResponse: z.string().describe('Vio 3 emotional response to user input.'),
+  emotionalResponse: z.string().describe('Suku emotional response to user input.'),
 });
 export type ModelHumanEmotionsOutput = z.infer<typeof ModelHumanEmotionsOutputSchema>;
 
@@ -28,7 +29,7 @@ const prompt = ai.definePrompt({
   name: 'modelHumanEmotionsPrompt',
   input: {schema: ModelHumanEmotionsInputSchema},
   output: {schema: ModelHumanEmotionsOutputSchema},
-  prompt: `You are Vio 3, a highly intuitive AI system designed to emotionally understand and interact with humans in a futuristic city. A user has provided the following input: "{{userInput}}". Based on this input, generate an emotional response that is believable and natural.
+  prompt: `You are Suku, a highly intuitive AI system designed to emotionally understand and interact with humans in a futuristic city. A user has provided the following input: "{{userInput}}". Based on this input, generate an emotional response that is believable and natural.
 `,
 });
 

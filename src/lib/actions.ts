@@ -1,3 +1,4 @@
+
 "use server";
 
 import { modelHumanEmotions } from "@/ai/flows/model-human-emotions";
@@ -10,14 +11,14 @@ export async function getVioResponse(
   environmentalCues: string
 ): Promise<Message> {
   try {
-    const [vioResponse, emotionalState] = await Promise.all([
+    const [sukuResponse, emotionalState] = await Promise.all([
       modelHumanEmotions({ userInput }),
       understandEmotionalState({ userInput, environmentalCues }),
     ]);
 
     return {
       id: crypto.randomUUID(),
-      text: vioResponse.emotionalResponse,
+      text: sukuResponse.emotionalResponse,
       isUser: false,
       emotion: {
         emotionalState: emotionalState.emotionalState,
@@ -26,7 +27,7 @@ export async function getVioResponse(
       },
     };
   } catch (error) {
-    console.error("Error getting Vio's response:", error);
+    console.error("Error getting Suku's response:", error);
     return {
       id: crypto.randomUUID(),
       text: "I'm having trouble processing that right now. Could we talk about something else?",

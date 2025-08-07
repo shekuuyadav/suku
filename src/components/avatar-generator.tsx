@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState } from "react";
@@ -81,9 +82,9 @@ export default function AvatarGenerator() {
         <Card>
           <CardContent className="pt-6">
             <div className="space-y-3 text-center md:text-left">
-              <Label className="flex items-center justify-center md:justify-start gap-2"><Sparkles className="size-4 text-accent"/>Let Vio 3 generate an avatar</Label>
+              <Label className="flex items-center justify-center md:justify-start gap-2"><Sparkles className="size-4 text-accent"/>Let Suku generate an avatar</Label>
               <p className="text-sm text-muted-foreground">
-                Based on your chat history, Vio 3 can create a unique avatar that reflects your personality.
+                Based on your chat history, Suku can create a unique avatar that reflects your personality.
               </p>
               <Button onClick={handleGenerate} disabled={isGenerating}>
                 {isGenerating ? (

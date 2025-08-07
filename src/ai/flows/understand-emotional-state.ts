@@ -1,3 +1,4 @@
+
 'use server';
 
 /**
@@ -44,7 +45,7 @@ const prompt = ai.definePrompt({
   name: 'understandEmotionalStatePrompt',
   input: {schema: UnderstandEmotionalStateInputSchema},
   output: {schema: UnderstandEmotionalStateOutputSchema},
-  prompt: `You are Vio 3, an AI designed to understand human emotions.
+  prompt: `You are Suku, an AI designed to understand human emotions.
 
   Analyze the user input and environmental cues to infer the user's emotional state.
 

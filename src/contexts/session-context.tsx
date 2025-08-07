@@ -1,3 +1,4 @@
+
 "use client";
 
 import type { Message } from "@/lib/types";
@@ -18,8 +19,8 @@ const SessionContext = createContext<SessionContextType | undefined>(undefined);
 export function SessionProvider({ children }: { children: ReactNode }) {
   const [messages, setMessages] = useState<Message[]>([
     {
-      id: "vio-intro",
-      text: "Hello, I'm Vio 3. I'm here to listen and understand. What's on your mind?",
+      id: "suku-intro",
+      text: "Hello, I'm Suku. I'm here to listen and understand. What's on your mind?",
       isUser: false,
     },
   ]);
@@ -36,7 +37,7 @@ export function SessionProvider({ children }: { children: ReactNode }) {
   };
 
   const interactionHistory = messages
-    .map((m) => `${m.isUser ? "User" : "Vio 3"}: ${m.text}`)
+    .map((m) => `${m.isUser ? "User" : "Suku"}: ${m.text}`)
     .join("\n");
 
   const value = {

@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
@@ -88,7 +89,7 @@ export default function ChatPanel() {
                 <FormItem className="flex-1">
                   <FormControl>
                     <Textarea
-                      placeholder="Type your message to Vio 3..."
+                      placeholder="Type your message to Suku..."
                       className="resize-none"
                       rows={1}
                       disabled={isLoading}

@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from "next/link";
@@ -30,7 +31,7 @@ export default function MainSidebar() {
         <div className="flex items-center gap-3">
           <Bot className="size-8 text-primary" />
           <div className="flex flex-col">
-            <h2 className="font-headline text-lg font-semibold">Vio 3</h2>
+            <h2 className="font-headline text-lg font-semibold">Suku</h2>
             <p className="text-xs text-muted-foreground">Companion</p>
           </div>
         </div>

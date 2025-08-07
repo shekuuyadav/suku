@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useMemo } from "react";
@@ -39,7 +40,7 @@ export default function MoodDashboardClient() {
         <div className="flex h-[400px] items-center justify-center rounded-lg border-2 border-dashed">
             <div className="text-center">
                 <h3 className="text-lg font-semibold">No emotion data yet.</h3>
-                <p className="text-muted-foreground">Start a conversation with Vio 3 to see your mood analysis here.</p>
+                <p className="text-muted-foreground">Start a conversation with Suku to see your mood analysis here.</p>
             </div>
         </div>
       )}

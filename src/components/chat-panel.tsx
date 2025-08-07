@@ -12,8 +12,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import ChatMessage from "./chat-message";
-import { Send } from "lucide-react";
-import { Skeleton } from "./ui/skeleton";
+import { Send, Bot } from "lucide-react";
+import { SukuLogo } from "./suku-logo";
 
 const chatFormSchema = z.object({
   message: z.string().min(1, "Message cannot be empty."),
@@ -38,7 +38,7 @@ export default function ChatPanel() {
         behavior: "smooth",
       });
     }
-  }, [messages]);
+  }, [messages, isLoading]);
 
   const onSubmit = async (data: ChatFormValues) => {
     const userInput = data.message;
@@ -65,13 +65,18 @@ export default function ChatPanel() {
             <ChatMessage key={message.id} message={message} />
           ))}
           {isLoading && (
-            <div className="flex items-start gap-4">
-              <Skeleton className="h-10 w-10 rounded-full" />
-              <div className="flex-1 space-y-2">
-                <Skeleton className="h-4 w-24" />
-                <Skeleton className="h-4 w-full" />
-                <Skeleton className="h-4 w-4/5" />
-              </div>
+             <div className="flex items-start gap-4">
+                <div className="flex size-10 items-center justify-center">
+                    <SukuLogo className="size-8" />
+                </div>
+                <div className="max-w-md rounded-lg rounded-bl-none bg-secondary px-4 py-3 text-secondary-foreground">
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                        Suku is typing
+                        <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-current delay-0" />
+                        <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-current delay-150" />
+                        <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-current delay-300" />
+                    </div>
+                </div>
             </div>
           )}
         </div>

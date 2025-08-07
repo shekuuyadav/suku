@@ -12,7 +12,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import ChatMessage from "./chat-message";
-import { Send, Bot } from "lucide-react";
+import { Send } from "lucide-react";
 import { SukuLogo } from "./suku-logo";
 
 const chatFormSchema = z.object({
@@ -32,9 +32,10 @@ export default function ChatPanel() {
   });
 
   useEffect(() => {
-    if (scrollAreaRef.current) {
-      scrollAreaRef.current.scrollTo({
-        top: scrollAreaRef.current.scrollHeight,
+    const view = scrollAreaRef.current?.querySelector('div');
+    if (view) {
+      view.scrollTo({
+        top: view.scrollHeight,
         behavior: "smooth",
       });
     }
@@ -67,7 +68,7 @@ export default function ChatPanel() {
           {isLoading && (
              <div className="flex items-start gap-4">
                 <div className="flex size-10 items-center justify-center">
-                    <SukuLogo className="size-8" />
+                    <SukuLogo className="size-10" />
                 </div>
                 <div className="max-w-md rounded-lg rounded-bl-none bg-secondary px-4 py-3 text-secondary-foreground">
                     <div className="flex items-center gap-2 text-sm text-muted-foreground">

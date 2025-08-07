@@ -3,7 +3,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { BarChart2, UserCircle, MessageSquare } from "lucide-react";
+import { BarChart2, UserCircle, MessageSquare, History } from "lucide-react";
 import { useSession } from "@/contexts/session-context";
 import {
   SidebarHeader,
@@ -24,6 +24,7 @@ export default function MainSidebar() {
   const menuItems = [
     { href: "/", label: "Chat", icon: MessageSquare },
     { href: "/dashboard", label: "Dashboard", icon: BarChart2 },
+    { href: "/history", label: "History", icon: History },
   ];
 
   return (

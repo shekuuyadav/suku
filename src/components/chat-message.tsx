@@ -1,6 +1,7 @@
+
 "use client";
 
-import { Bot, User } from "lucide-react";
+import { User } from "lucide-react";
 import type { Message } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -11,6 +12,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { useSession } from "@/contexts/session-context";
+import { SukuLogo } from "./suku-logo";
 
 interface ChatMessageProps {
   message: Message;
@@ -32,8 +34,8 @@ export default function ChatMessage({ message }: ChatMessageProps) {
           <Tooltip>
             <TooltipTrigger asChild>
               <Avatar className="h-10 w-10 border-2 border-primary/50">
-                <AvatarFallback>
-                  <Bot />
+                <AvatarFallback className="bg-primary/10">
+                  <SukuLogo className="size-10" />
                 </AvatarFallback>
               </Avatar>
             </TooltipTrigger>

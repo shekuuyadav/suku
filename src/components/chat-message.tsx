@@ -35,7 +35,7 @@ export default function ChatMessage({ message }: ChatMessageProps) {
             <TooltipTrigger asChild>
               <Avatar className="h-10 w-10 border-2 border-primary/50">
                 <AvatarFallback className="bg-primary/10">
-                  <SukuLogo className="size-10" />
+                  <SukuLogo className="size-10" isSmiling={true} />
                 </AvatarFallback>
               </Avatar>
             </TooltipTrigger>

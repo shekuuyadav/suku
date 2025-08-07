@@ -36,6 +36,15 @@ export async function getVioResponse(
   }
 }
 
+export async function regenerateResponseAction(userInput: string): Promise<Message | { error: string }> {
+    try {
+        return await getVioResponse(userInput, "Calm, indoor setting");
+    } catch (error) {
+        console.error("Error regenerating response:", error);
+        return { error: "Sorry, I was unable to regenerate a response. Please try again." };
+    }
+}
+
 export async function generateAvatarAction(
   interactionHistory: string
 ): Promise<{ avatarDataUri: string } | { error: string }> {

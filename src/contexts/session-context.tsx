@@ -7,6 +7,7 @@ import React, { createContext, useContext, useState, ReactNode } from "react";
 interface SessionContextType {
   messages: Message[];
   addMessage: (message: Message) => void;
+  replaceLastMessage: (message: Message) => void;
   avatarUrl: string;
   setAvatarUrl: (url: string) => void;
   interactionHistory: string;
@@ -36,6 +37,20 @@ export function SessionProvider({ children }: { children: ReactNode }) {
     }
   };
 
+  const replaceLastMessage = (message: Message) => {
+    setMessages(prev => {
+        const newMessages = [...prev];
+        const lastSukuIndex = newMessages.map(m => !m.isUser).lastIndexOf(true);
+        if (lastSukuIndex !== -1) {
+            newMessages[lastSukuIndex] = message;
+        }
+        return newMessages;
+    });
+    if (!message.isUser && message.emotion) {
+      setLastEmotion(message.emotion.emotionalState.toLowerCase());
+    }
+  }
+
   const interactionHistory = messages
     .map((m) => `${m.isUser ? "User" : "Suku"}: ${m.text}`)
     .join("\n");
@@ -43,6 +58,7 @@ export function SessionProvider({ children }: { children: ReactNode }) {
   const value = {
     messages,
     addMessage,
+    replaceLastMessage,
     avatarUrl,
     setAvatarUrl,
     interactionHistory,

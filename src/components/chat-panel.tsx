@@ -58,12 +58,18 @@ export default function ChatPanel() {
     setIsLoading(false);
   };
 
+  const lastSukuMessageId = messages.filter(m => !m.isUser).pop()?.id;
+
   return (
     <div className="flex h-full flex-1 flex-col">
       <ScrollArea className="flex-1" ref={scrollAreaRef}>
         <div className="space-y-6 p-4 md:p-6">
           {messages.map((message) => (
-            <ChatMessage key={message.id} message={message} />
+            <ChatMessage 
+              key={message.id} 
+              message={message}
+              isLastSukuMessage={!message.isUser && message.id === lastSukuMessageId && !isLoading}
+            />
           ))}
           {isLoading && (
              <div className="flex items-start gap-4">

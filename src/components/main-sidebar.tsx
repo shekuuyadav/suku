@@ -3,7 +3,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Bot, BarChart2, UserCircle, MessageSquare } from "lucide-react";
+import { BarChart2, UserCircle, MessageSquare } from "lucide-react";
 import { useSession } from "@/contexts/session-context";
 import {
   SidebarHeader,
@@ -15,6 +15,7 @@ import {
   SidebarSeparator,
 } from "@/components/ui/sidebar";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { SukuLogo } from "./suku-logo";
 
 export default function MainSidebar() {
   const pathname = usePathname();
@@ -29,7 +30,7 @@ export default function MainSidebar() {
     <>
       <SidebarHeader className="p-4">
         <div className="flex items-center gap-3">
-          <Bot className="size-8 text-primary" />
+          <SukuLogo className="size-8" />
           <div className="flex flex-col">
             <h2 className="font-headline text-lg font-semibold">Suku</h2>
             <p className="text-xs text-muted-foreground">Companion</p>

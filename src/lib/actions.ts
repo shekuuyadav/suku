@@ -38,8 +38,9 @@ export async function regenerateResponseAction(userInput: string): Promise<Messa
     try {
         return await getVioResponse(userInput, "Calm, indoor setting");
     } catch (error) {
-        console.error("Error regenerating response:", error);
-        return { error: `Sorry, I was unable to regenerate a response. Reason: ${getErrorMessage(error)}` };
+        const errorMessage = getErrorMessage(error);
+        console.error("Error regenerating response:", errorMessage);
+        return { error: `Sorry, I was unable to regenerate a response. Reason: ${errorMessage}` };
     }
 }
 
@@ -53,8 +54,9 @@ export async function generateAvatarAction(
     const response = await generateAvatar({ interactionHistory });
     return { avatarDataUri: response.avatarDataUri };
   } catch (error) {
-    console.error("Error generating avatar:", error);
-    return { error: `Sorry, I was unable to generate an avatar. Reason: ${getErrorMessage(error)}` };
+    const errorMessage = getErrorMessage(error);
+    console.error("Error generating avatar:", errorMessage);
+    return { error: `Sorry, I was unable to generate an avatar. Reason: ${errorMessage}` };
   }
 }
 
@@ -65,7 +67,8 @@ export async function getVioResponseAction(
     try {
         return await getVioResponse(userInput, environmentalCues);
     } catch (error) {
-        console.error("Error getting Suku's response:", error);
-        return { error: `I'm having trouble processing that right now. Reason: ${getErrorMessage(error)}` };
+        const errorMessage = getErrorMessage(error);
+        console.error("Error getting Suku's response:", errorMessage);
+        return { error: `I'm having trouble processing that right now. Reason: ${errorMessage}` };
     }
 }

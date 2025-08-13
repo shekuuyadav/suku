@@ -6,11 +6,17 @@ import { understandEmotionalState } from "@/ai/flows/understand-emotional-state"
 import { generateAvatar } from "@/ai/flows/generate-avatar";
 import type { Message } from "@/lib/types";
 
+function getErrorMessage(error: unknown): string {
+    if (error instanceof Error) {
+      return error.message;
+    }
+    return String(error);
+}
+
 export async function getVioResponse(
   userInput: string,
   environmentalCues: string
 ): Promise<Message> {
-  try {
     const [sukuResponse, emotionalState] = await Promise.all([
       modelHumanEmotions({ userInput }),
       understandEmotionalState({ userInput, environmentalCues }),
@@ -26,14 +32,6 @@ export async function getVioResponse(
         reason: emotionalState.reason,
       },
     };
-  } catch (error) {
-    console.error("Error getting Suku's response:", error);
-    return {
-      id: crypto.randomUUID(),
-      text: "I'm having trouble processing that right now. Could we talk about something else?",
-      isUser: false,
-    };
-  }
 }
 
 export async function regenerateResponseAction(userInput: string): Promise<Message | { error: string }> {
@@ -41,7 +39,7 @@ export async function regenerateResponseAction(userInput: string): Promise<Messa
         return await getVioResponse(userInput, "Calm, indoor setting");
     } catch (error) {
         console.error("Error regenerating response:", error);
-        return { error: "Sorry, I was unable to regenerate a response. Please try again." };
+        return { error: `Sorry, I was unable to regenerate a response. Reason: ${getErrorMessage(error)}` };
     }
 }
 
@@ -56,6 +54,18 @@ export async function generateAvatarAction(
     return { avatarDataUri: response.avatarDataUri };
   } catch (error) {
     console.error("Error generating avatar:", error);
-    return { error: "Sorry, I was unable to generate an avatar. Please try again." };
+    return { error: `Sorry, I was unable to generate an avatar. Reason: ${getErrorMessage(error)}` };
   }
+}
+
+export async function getVioResponseAction(
+    userInput: string,
+    environmentalCues: string
+): Promise<Message | { error: string }> {
+    try {
+        return await getVioResponse(userInput, environmentalCues);
+    } catch (error) {
+        console.error("Error getting Suku's response:", error);
+        return { error: `I'm having trouble processing that right now. Reason: ${getErrorMessage(error)}` };
+    }
 }

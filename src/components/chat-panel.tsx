@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useSession } from "@/contexts/session-context";
-import { getVioResponse } from "@/lib/actions";
+import { getVioResponseAction } from "@/lib/actions";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
@@ -14,6 +14,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import ChatMessage from "./chat-message";
 import { Send } from "lucide-react";
 import { SukuLogo } from "./suku-logo";
+import { useToast } from "@/hooks/use-toast";
 
 const chatFormSchema = z.object({
   message: z.string().min(1, "Message cannot be empty."),
@@ -25,6 +26,7 @@ export default function ChatPanel() {
   const { messages, addMessage } = useSession();
   const [isLoading, setIsLoading] = useState(false);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
+  const { toast } = useToast();
 
   const form = useForm<ChatFormValues>({
     resolver: zodResolver(chatFormSchema),
@@ -53,8 +55,16 @@ export default function ChatPanel() {
     };
     addMessage(userMessage);
 
-    const vioResponse = await getVioResponse(userInput, "Calm, indoor setting");
-    addMessage(vioResponse);
+    const vioResponse = await getVioResponseAction(userInput, "Calm, indoor setting");
+    if ("error" in vioResponse) {
+        toast({
+            variant: "destructive",
+            title: "Error",
+            description: vioResponse.error,
+        });
+    } else {
+        addMessage(vioResponse);
+    }
     setIsLoading(false);
   };
 

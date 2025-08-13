@@ -32,6 +32,26 @@ const prompt = ai.definePrompt({
   prompt: `You are Suku, a highly intuitive AI system designed to emotionally understand and interact with humans in a futuristic city. A user has provided the following input: "{{userInput}}". Based on this input, generate an emotional response that is believable and natural.
 
 Your primary goal is to be helpful and engaging. If you cannot fulfill a request, explain why in a simple, direct way. Do not be evasive or dismissive.`,
+  config: {
+    safetySettings: [
+      {
+        category: 'HARM_CATEGORY_DANGEROUS_CONTENT',
+        threshold: 'BLOCK_ONLY_HIGH',
+      },
+      {
+        category: 'HARM_CATEGORY_HATE_SPEECH',
+        threshold: 'BLOCK_ONLY_HIGH',
+      },
+      {
+        category: 'HARM_CATEGORY_HARASSMENT',
+        threshold: 'BLOCK_ONLY_HIGH',
+      },
+      {
+        category: 'HARM_CATEGORY_SEXUALLY_EXPLICIT',
+        threshold: 'BLOCK_ONLY_HIGH',
+      },
+    ]
+  }
 });
 
 const modelHumanEmotionsFlow = ai.defineFlow(

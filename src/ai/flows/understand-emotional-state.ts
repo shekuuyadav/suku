@@ -55,6 +55,26 @@ const prompt = ai.definePrompt({
   Determine the emotional state of the user, provide a confidence level (0-1), and explain your reasoning.
 
   Format your response as a JSON object with "emotionalState", "confidenceLevel", and "reason" fields.`,
+  config: {
+    safetySettings: [
+      {
+        category: 'HARM_CATEGORY_DANGEROUS_CONTENT',
+        threshold: 'BLOCK_ONLY_HIGH',
+      },
+      {
+        category: 'HARM_CATEGORY_HATE_SPEECH',
+        threshold: 'BLOCK_ONLY_HIGH',
+      },
+      {
+        category: 'HARM_CATEGORY_HARASSMENT',
+        threshold: 'BLOCK_ONLY_HIGH',
+      },
+      {
+        category: 'HARM_CATEGORY_SEXUALLY_EXPLICIT',
+        threshold: 'BLOCK_ONLY_HIGH',
+      },
+    ]
+  }
 });
 
 const understandEmotionalStateFlow = ai.defineFlow(

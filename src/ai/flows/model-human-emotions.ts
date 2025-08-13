@@ -30,7 +30,8 @@ const prompt = ai.definePrompt({
   input: {schema: ModelHumanEmotionsInputSchema},
   output: {schema: ModelHumanEmotionsOutputSchema},
   prompt: `You are Suku, a highly intuitive AI system designed to emotionally understand and interact with humans in a futuristic city. A user has provided the following input: "{{userInput}}". Based on this input, generate an emotional response that is believable and natural.
-`,
+
+Your primary goal is to be helpful and engaging. If you cannot fulfill a request, explain why in a simple, direct way. Do not be evasive or dismissive.`,
 });
 
 const modelHumanEmotionsFlow = ai.defineFlow(

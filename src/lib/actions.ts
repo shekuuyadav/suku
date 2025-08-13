@@ -64,9 +64,8 @@ export async function regenerateResponseAction(userInput: string): Promise<Messa
     try {
         return await getVioResponse(userInput, "Calm, indoor setting");
     } catch (error) {
-        const errorMessage = getErrorMessage(error);
-        console.error("Error regenerating response:", errorMessage);
-        return { error: `Sorry, I was unable to regenerate a response. Reason: ${errorMessage}` };
+        console.error("Error regenerating response:", getErrorMessage(error));
+        return { error: "The system is temporarily busy. Please try again in a moment." };
     }
 }
 
@@ -80,9 +79,8 @@ export async function generateAvatarAction(
     const response = await retryWithBackoff(() => generateAvatar({ interactionHistory }));
     return { avatarDataUri: response.avatarDataUri };
   } catch (error) {
-    const errorMessage = getErrorMessage(error);
-    console.error("Error generating avatar:", errorMessage);
-    return { error: `Sorry, I was unable to generate an avatar. Reason: ${errorMessage}` };
+    console.error("Error generating avatar:", getErrorMessage(error));
+    return { error: "The avatar generator is temporarily busy. Please try again in a moment." };
   }
 }
 
@@ -93,8 +91,7 @@ export async function getVioResponseAction(
     try {
         return await getVioResponse(userInput, environmentalCues);
     } catch (error) {
-        const errorMessage = getErrorMessage(error);
-        console.error("Error getting Suku's response:", errorMessage);
-        return { error: `I'm having trouble processing that right now. Reason: ${errorMessage}` };
+        console.error("Error getting Suku's response:", getErrorMessage(error));
+        return { error: "The system is temporarily busy. Please try again in a moment." };
     }
 }
